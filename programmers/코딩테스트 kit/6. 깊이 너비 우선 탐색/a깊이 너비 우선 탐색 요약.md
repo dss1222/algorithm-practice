@@ -49,7 +49,7 @@ def dfs_stack(graph, start):
 from collections import deque
 
 def bfs(graph, start):
-    queue = deque([stAart])
+    queue = deque([start])
     visited = set([start])
     while queue:
         node = queue.popleft()
