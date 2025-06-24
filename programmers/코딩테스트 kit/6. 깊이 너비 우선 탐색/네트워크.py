@@ -7,13 +7,34 @@ def solution(n, computers):
             if computers[node][i] == 1 and not visited[i]:
                 dfs(i)
                 
-    count = 0
-    
+    answer = 0
     for i in range(n):
         if not visited[i]:
             dfs(i)
-            count += 1
+            answer += 1
             
-    return count
+    return answer
 
-solution(3, [[1, 1, 0], [1, 1, 0], [0, 0, 1]])
+from collections import deque
+
+def solution(n, computers):
+    visited = [False] * n
+    answer = 0
+    
+    def bfs(start):
+        queue = deque([start])
+        visited[start] = True
+        
+        while queue:
+            node = queue.popleft()
+            for i in range(n):
+                if computers[node][i] == 1 and not visited[i]:
+                    visited[i] = True
+                    queue.append(i)
+                    
+    for i in range(n):
+        if not visited[i]:
+            bfs(i)
+            answer += 1
+            
+    return answer
